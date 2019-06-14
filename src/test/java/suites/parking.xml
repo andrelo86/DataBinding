@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="ParkingTest" parallel="false">
+
+  <test name="ParkingTests">
+    <parameter name="" value=""/>
+    <classes>
+      <class name="scripts.ParkingTest">
+        <methods>
+          <include name="createParking" />
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>
