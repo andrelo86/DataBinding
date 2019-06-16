@@ -3,10 +3,11 @@ package framework;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import utils.Utils;
 
 public final class Driver {
 
-    private static final String CHROMEDRIVER_PATH = "";
+    private static final String CHROMEDRIVER_PATH = Utils.getValueFromPropertiesFile(Utils.RESOURCES_PATH + "config.properties", "CHROME_DRIVERS");
 
     private static WebDriver mdriver;
 

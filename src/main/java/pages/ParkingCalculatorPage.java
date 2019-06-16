@@ -1,5 +1,7 @@
 package pages;
 
+import components.DatePickerComponent;
+import entities.Parking;
 import framework.BasePage;
 import framework.Locators;
 import org.apache.log4j.Logger;
@@ -51,8 +53,18 @@ public class ParkingCalculatorPage extends BasePage {
     driver.findElement(calculateButton).click();
   }
 
-  public String getTotal() {
+  public String getDisplayedTotal() {
     logger.info("Picking total..");
     return driver.findElement(total).getText();
+  }
+
+  public Parking buildParking(String[] data) {
+    return new Parking(data[0], data[1], data[2], data[3], data[4]);
+  }
+
+  public DatePickerComponent selectDatePicker(String datePicker) {
+    logger.info("Selecting Date generator: " + datePicker);
+    driver.findElement(By.cssSelector(String.format(Locators.ENTRY_EXIT_DATE_PICKER_CSS, datePicker))).click();
+    return new DatePickerComponent(driver.getWindowHandle()); // to store before driver state
   }
 }

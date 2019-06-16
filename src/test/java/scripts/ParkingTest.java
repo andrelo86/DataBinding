@@ -19,23 +19,24 @@ public class ParkingTest extends BaseTest {
 
   @Test(testName = "createParking", dataProvider = "test", dataProviderClass = Utils.class)
   public void createShortTermParking(String... data) {
-    Parking shortParking = new Parking(data[0], data[1], data[2], data[3], data[4]); //This could be improved. POJO
     navigateTo(Utils.getValueFromPropertiesFile(Utils.RESOURCES_PATH + "config.properties",
         APPLICATION_URL_KEY));
     ParkingCalculatorPage parkingCalculatorPage = new ParkingCalculatorPage(Driver.getDriver());
-    parkingCalculatorPage.chooseALot(shortParking.getLot());
+    Parking parking = parkingCalculatorPage.buildParking(data);
+
+    parkingCalculatorPage.chooseALot(parking.getLot());
     parkingCalculatorPage
-        .setEntryExitDateAndTime("Entry", shortParking.getEntryTime(), shortParking.getEntryDate());
+        .setEntryExitDateAndTime("Entry", parking.getEntryTime(), parking.getEntryDate());
     parkingCalculatorPage
-        .setEntryExitDateAndTime("Exit", shortParking.getExitTime(), shortParking.getExitDate());
+        .setEntryExitDateAndTime("Exit", parking.getExitTime(), parking.getExitDate());
     parkingCalculatorPage.calculate();
 
-    if (shortParking.getLot().equals(SHORT_TERM_PARKING)) {
+    if (parking.getLot().equals(SHORT_TERM_PARKING)) {
       assertThat(SHORT_TERM_TOTAL)
-          .isEqualTo(parkingCalculatorPage.getTotal());
+          .isEqualTo(parkingCalculatorPage.getDisplayedTotal());
 
-    } else if (shortParking.getLot().equals(LONG_TERM_GARAGE_PARKING)){
-      assertThat(LONG_TERM_GARAGE_TOTAL).isEqualTo(parkingCalculatorPage.getTotal());
+    } else if (parking.getLot().equals(LONG_TERM_GARAGE_PARKING)) {
+      assertThat(LONG_TERM_GARAGE_TOTAL).isEqualTo(parkingCalculatorPage.getDisplayedTotal());
     }
 
   }

@@ -13,6 +13,9 @@ public class Locators {
 
   public static final String TOTAL_CSS = ".SubHead b";
 
+  public static final String ENTRY_EXIT_DATE_PICKER_CSS = "a[href=\"javascript:NewCal('%s','mmddyyyy',false,24)\"]";
+
+
   private Locators(){}
 
 }
