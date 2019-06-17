@@ -8,5 +8,5 @@
   - Download the source code
   - Set java jdk accordingly
   - Run mvn clean install in project root
-  - Set CHROMEDRIVER_PATH accordingly in Driver.class
+  - Set CHROMEDRIVER_PATH accordingly in config.properties
   - Run TestNG xml to execute the scripts.
